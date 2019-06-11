@@ -1,6 +1,21 @@
+---
+title: "CYO"
+author: "Robert Lewis"
+date: "June 11, 2019"
+output: html_document
+---
+## Introduction
+Currently working at a university that offers "Train the Trainers" safety training for many industries, it is imparative that we know what type of training needs to occur in different states within in our region to offer proffessional hands on training classes. Using Injured-workers dataset from Kaggle, my goal is to predict states, maybe cities, of where certian injuries occur to most often
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load libraries}
 library(tidyverse)
 library(useful)
+```
 
+```{r load data}
 if(!file.exists("severeinjury.csv.zip")){
   download.file("https://www.kaggle.com/jboysen/injured-workers/downloads/injured-workers.zip/1", destfile = "severeinjury.csv.zip")}
 
@@ -8,8 +23,14 @@ unzip("severeinjury.csv.zip")
 
 injuries <- read.csv(file.path("severeinjury.csv"))
 
+```
+
+```{r Initial data view}
 str(injuries)
 summary(injuries)
+```
+
+```{r Explore Data}
 
 injuries1 <- injuries %>% select("ID","Employer","EventDate", "State","NatureTitle","EventTitle","SourceTitle","Amputation")
 str(injuries1)
