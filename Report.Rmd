@@ -5,7 +5,7 @@ date: "June 11, 2019"
 output: html_document
 ---
 ## Introduction
-Currently working at a university that offers "Train the Trainers" safety training for many industries, it is imparative that we know what type of training needs to occur in different states within in our region to offer proffessional hands on training classes. Using Injured-workers dataset from Kaggle, my goal is to predict states, maybe cities, of where certian injuries occur to most often
+Currently working OSHA Training Center that offers a variety of safety training for many industries, it is imparative that we know what type of training needs to occur in different states within in our region to offer professional hands on training classes. Using Injured-workers dataset from Kaggle, my goal is to predict states, maybe cities, of where certian injuries occur to most often
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -16,10 +16,10 @@ library(useful)
 ```
 
 ```{r load data}
-if(!file.exists("severeinjury.csv.zip")){
-  download.file("https://www.kaggle.com/jboysen/injured-workers/downloads/injured-workers.zip/1", destfile = "severeinjury.csv.zip")}
+if(!file.exists("severeinjury.csv")){
+  download.file("https://www.osha.gov/severeinjury/xml/severeinjury.csv", destfile = "severeinjury.csv")}
 
-unzip("severeinjury.csv.zip")
+#unzip("severeinjury.csv.zip")
 
 injuries <- read.csv(file.path("severeinjury.csv"))
 
@@ -28,6 +28,10 @@ injuries <- read.csv(file.path("severeinjury.csv"))
 ```{r Initial data view}
 str(injuries)
 summary(injuries)
+
+injuries_noNA <- na.omit(injuries)
+str(injuries_noNA)
+
 ```
 
 ```{r Explore Data}
